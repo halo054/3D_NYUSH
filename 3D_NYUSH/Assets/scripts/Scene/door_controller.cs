@@ -18,10 +18,14 @@ public class door_controller : MonoBehaviour
     public TextMeshProUGUI key_hint;
     public Camera mainCamera; // 指向您的主摄像机
     private bool islooking = false;
-    
+    public AudioClip openSound;
+    public AudioClip closeSound;
 
-    private void Start()
+    private AudioSource audioSource;
+
+    void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         HideGUI();
     }
 
@@ -42,15 +46,18 @@ public class door_controller : MonoBehaviour
         }
         if (hasRotated == true)
         {
+            audioSource.clip = closeSound;
             rotationAmount = 90f;
         }
         else
         {
+            audioSource.clip = openSound;
             rotationAmount = -90f;
         }
         // 检测是否按下了E键且没有正在旋转
         if (Input.GetKeyDown(KeyCode.E) && !isRotating && !islocked && islooking)
         {
+            audioSource.Play();
             // 计算目标旋转角度
             Vector3 targetEulerAngles = transform.eulerAngles + new Vector3(0f, rotationAmount, 0f);
             targetRotation = Quaternion.Euler(targetEulerAngles);

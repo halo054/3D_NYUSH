@@ -6,6 +6,7 @@ public class HideMouse : MonoBehaviour
 {
     public GameObject pausepanel;
     public GameObject smartPhone;
+    public GameObject alarmclock;
     void Start()
     {
         // 隐藏鼠标
@@ -14,7 +15,7 @@ public class HideMouse : MonoBehaviour
 
     void Update()
     {
-        if (smartPhone.activeSelf || pausepanel.activeSelf)
+        if (smartPhone.activeSelf || pausepanel.activeSelf || alarmclock.activeSelf)
         {
             Cursor.visible = true;
         }

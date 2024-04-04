@@ -41,10 +41,6 @@ public class UI_Manager : MonoBehaviour
         sendsignal.OnBoldTextDetected += OnBoldTextDetected;
         // 在开始时找到场景中的CameraController实例
         cameraController = FindObjectOfType<CameraController>();
-        if (cameraController == null)
-        {
-            Debug.LogError("CameraController not found in the scene. Please add it to a game object.");
-        }
     }
 
     void Update()
@@ -172,5 +168,12 @@ public class UI_Manager : MonoBehaviour
         anynew_email = false;
         // 取消订阅 BoldTextDetected 事件，以防止内存泄漏
         sendsignal.OnBoldTextDetected -= OnBoldTextDetected;
+    }
+
+    public void stopPause()
+    {
+        // 恢复游戏时，通知摄像机控制器恢复处理输入
+        cameraController.EnableInput();
+        Time.timeScale = 1f; // 恢复游戏
     }
 }
