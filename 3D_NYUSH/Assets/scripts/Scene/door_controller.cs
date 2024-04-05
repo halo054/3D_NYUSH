@@ -34,15 +34,15 @@ public class door_controller : MonoBehaviour
         CheckLookingAtObject(); // 检测是否正在看着物体
         if (islocked == true)
         {
-            key_hint.text = "locked";
+            key_hint.text = "Locked";
         }
         else if (hasRotated == true)
         {
-            key_hint.text = "press E to close";
+            key_hint.text = "Press E to close";
         }
         else
         {
-            key_hint.text = "press E to open";
+            key_hint.text = "Press E to open";
         }
         if (hasRotated == true)
         {
@@ -100,15 +100,13 @@ public class door_controller : MonoBehaviour
     }
     private void CheckLookingAtObject()
     {
-        float maxDistance = 10f; // 设置射线的最大长度
+        float maxDistance = 2.5f; // 设置射线的最大长度
         Camera mainCamera = Camera.main; // 获取主摄像机
 
         // 创建从摄像机位置发射的射线
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         RaycastHit hit;
-
-        // 可视化射线
-        Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * maxDistance, Color.green);
+        
 
         // 如果射线与物体相交
         if (Physics.Raycast(ray, out hit, maxDistance))
@@ -116,7 +114,6 @@ public class door_controller : MonoBehaviour
             // 检查相交的物体是否是当前物体
             if (hit.collider.gameObject == gameObject)
             {
-                Debug.Log("111");
                 islooking = true;
                 ShowGUI(); // 如果玩家正在看着物体，显示GUI提示
                 return;
@@ -124,8 +121,11 @@ public class door_controller : MonoBehaviour
         }
 
         // 如果没有射线与物体相交
-        islooking = false;
-        HideGUI(); // 如果玩家没有看着物体，隐藏GUI提示
+        if (islooking == true)
+        {
+            islooking = false;
+            HideGUI(); // 如果玩家没有看着物体，隐藏GUI提示
+        }
     }
 
     private void ShowGUI()

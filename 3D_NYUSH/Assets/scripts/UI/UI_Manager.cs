@@ -25,6 +25,8 @@ public class UI_Manager : MonoBehaviour
     public Image grayOverlayImage;
     private void Start()
     {
+        grayOverlayImage.gameObject.SetActive(false);
+        pausePanel.SetActive(false);
         smartPhone.SetActive(false);
         eMail.SetActive(true);
         new_email.SetActive(true);
@@ -41,6 +43,10 @@ public class UI_Manager : MonoBehaviour
         sendsignal.OnBoldTextDetected += OnBoldTextDetected;
         // 在开始时找到场景中的CameraController实例
         cameraController = FindObjectOfType<CameraController>();
+        if (cameraController == null)
+        {
+            Debug.LogError("CameraController not found in the scene. Please add it to a game object.");
+        }
     }
 
     void Update()
