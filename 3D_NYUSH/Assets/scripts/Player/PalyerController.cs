@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
             bool isMoving = (horizontalInput != 0 || verticalInput != 0);
 
             // 播放脚步声音效
-            if (isMoving && !audioSource.isPlaying)
+            if (isMoving && !audioSource.isPlaying && characterController.velocity!= Vector3.zero)
             {
                 PlayFootstepSound();
             }

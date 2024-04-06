@@ -14,7 +14,7 @@ public class door_controller : MonoBehaviour
     private Quaternion targetRotation; // 目标旋转
     private float rotationTimer = 0f; // 旋转计时器
     private bool hasRotated = false;
-    public bool islocked = true;
+    public bool is_locked = true;
     public TextMeshProUGUI key_hint;
     public Camera mainCamera; // 指向您的主摄像机
     private bool islooking = false;
@@ -31,20 +31,22 @@ public class door_controller : MonoBehaviour
 
     void Update()
     {
+        
         CheckLookingAtObject(); // 检测是否正在看着物体
-        if (islocked == true)
+ 
+        if (is_locked == true && islooking == true)
         {
             key_hint.text = "Locked";
         }
-        else if (hasRotated == true)
+        else if (is_locked == false && hasRotated == true && islooking == true)
         {
             key_hint.text = "Press E to close";
         }
-        else
+        else if(is_locked == false && hasRotated == false && islooking == true)
         {
             key_hint.text = "Press E to open";
         }
-        if (hasRotated == true)
+        if (is_locked == false && hasRotated == true)
         {
             audioSource.clip = closeSound;
             rotationAmount = 90f;
@@ -55,7 +57,7 @@ public class door_controller : MonoBehaviour
             rotationAmount = -90f;
         }
         // 检测是否按下了E键且没有正在旋转
-        if (Input.GetKeyDown(KeyCode.E) && !isRotating && !islocked && islooking)
+        if (Input.GetKeyDown(KeyCode.E) && !isRotating && !is_locked && islooking)
         {
             audioSource.Play();
             // 计算目标旋转角度
