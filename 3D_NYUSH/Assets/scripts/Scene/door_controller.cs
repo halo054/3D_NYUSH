@@ -48,18 +48,26 @@ public class door_controller : MonoBehaviour
         }
         if (is_locked == false && hasRotated == true)
         {
-            audioSource.clip = closeSound;
+            if (audioSource.clip != closeSound)
+            {
+                audioSource.clip = closeSound;
+            }
+            
             rotationAmount = 90f;
         }
         else
         {
-            audioSource.clip = openSound;
+            if (audioSource.clip != openSound)
+            {
+                audioSource.clip = openSound;
+            }
+
             rotationAmount = -90f;
         }
         // 检测是否按下了E键且没有正在旋转
         if (Input.GetKeyDown(KeyCode.E) && !isRotating && !is_locked && islooking)
         {
-            audioSource.Play();
+            
             // 计算目标旋转角度
             Vector3 targetEulerAngles = transform.eulerAngles + new Vector3(0f, rotationAmount, 0f);
             targetRotation = Quaternion.Euler(targetEulerAngles);
@@ -81,6 +89,10 @@ public class door_controller : MonoBehaviour
         // 如果正在旋转，执行旋转动画
         if (isRotating)
         {
+            if (audioSource.isPlaying == false)
+            {
+                audioSource.Play();
+            }
             rotationTimer += Time.deltaTime;
             float t = Mathf.Clamp01(rotationTimer / rotationDuration);
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
@@ -9,6 +10,7 @@ public class ProgressBarCircle : MonoBehaviour
     public Color BarBackGroundColor;
     public Color MaskColor;
     public Sprite BarBackGroundSprite;
+    public string targetSceneName; // 新添加的字段，用于存储目标场景的名称
 
     private Image bar, barBackground, Mask;
     private float barValue;
@@ -23,6 +25,12 @@ public class ProgressBarCircle : MonoBehaviour
             value = Mathf.Clamp(value, 0, 100);
             barValue = value;
             UpdateValue(barValue);
+
+            // 当进度条充满时触发场景切换
+            if (barValue >= 100f)
+            {
+                SwitchToTargetScene();
+            }
         }
     }
 
@@ -64,6 +72,19 @@ public class ProgressBarCircle : MonoBehaviour
         if (isIncreasing)
         {
             BarValue += Time.deltaTime * 100f; // Adjust this multiplier for desired speed
+        }
+    }
+
+    // 新添加的方法，用于切换到目标场景
+    void SwitchToTargetScene()
+    {
+        if (!string.IsNullOrEmpty(targetSceneName))
+        {
+            SceneManager.LoadScene(targetSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Target scene name is not specified!");
         }
     }
 }
