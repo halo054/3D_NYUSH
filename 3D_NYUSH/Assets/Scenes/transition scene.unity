@@ -528,7 +528,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708656105}
   m_CullTransparentMesh: 1
---- !u!1 &1489479532
+--- !u!1 &1240834915
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -536,8 +536,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1489479534}
-  - component: {fileID: 1489479533}
+  - component: {fileID: 1240834917}
+  - component: {fileID: 1240834916}
   m_Layer: 0
   m_Name: transition manager
   m_TagString: Untagged
@@ -545,13 +545,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1489479533
+--- !u!114 &1240834916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489479532}
+  m_GameObject: {fileID: 1240834915}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7f19658412a2cc44927d91fea91cef1, type: 3}
@@ -563,14 +563,15 @@ MonoBehaviour:
   sceneNames:
   - Day 1
   - Day 1
+  haskey: 0
   volume: 0.01
---- !u!4 &1489479534
+--- !u!4 &1240834917
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489479532}
+  m_GameObject: {fileID: 1240834915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 282.68018, y: 133.70676, z: 305.288}
@@ -849,4 +850,4 @@ SceneRoots:
   - {fileID: 1573084156}
   - {fileID: 2097610727}
   - {fileID: 2018417786}
-  - {fileID: 1489479534}
+  - {fileID: 1240834917}

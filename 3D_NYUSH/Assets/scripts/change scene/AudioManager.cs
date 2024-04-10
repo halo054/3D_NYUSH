@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] audioClips;
     public string[] sceneNames;
     private int currentIndex = 0;
-
+    public bool haskey;
     // 音量变量
     [Range(0f, 1f)]
     public float volume = 1f;
@@ -39,6 +39,7 @@ public class AudioManager : MonoBehaviour
         {
             PlayAudio();
         }
+        
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -48,6 +49,7 @@ public class AudioManager : MonoBehaviour
         {
             PlayAudio();
         }
+        
     }
 
     void PlayAudio()
