@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: b181c64ab6ffb8842a4c1a6b10bfea34,
-    type: 2}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -32974,6 +32973,8 @@ MonoBehaviour:
   closeSound: {fileID: 8300000, guid: c52f0b0e644464ca0b066d80091a5c8f, type: 3}
   keypickupsound: {fileID: 8300000, guid: 27685348645ba4d47a4d3a16e0e94a1e, type: 3}
   keyObject: {fileID: 463524753}
+  isprofessorin: 0
+  isweird: 0
 --- !u!1 &665950525
 GameObject:
   m_ObjectHideFlags: 0
@@ -51167,10 +51168,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 535513407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.341819, y: 0.46}
-  m_AnchorMax: {x: 0.6672084, y: 0.5364651}
-  m_AnchoredPosition: {x: -0.19999695, y: 0}
-  m_SizeDelta: {x: -2.2381, y: -2}
+  m_AnchorMin: {x: 0.35223565, y: 0.46}
+  m_AnchorMax: {x: 0.66200006, y: 0.5457244}
+  m_AnchoredPosition: {x: -0.42041016, y: -1.5}
+  m_SizeDelta: {x: -5.999695, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961933755
 MonoBehaviour:
@@ -51219,7 +51220,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.35
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -55621,10 +55622,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1507626276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.14348936, y: 0.11942645}
-  m_AnchorMax: {x: 0.787352, y: 0.84676796}
-  m_AnchoredPosition: {x: 3.0718079, y: -6.046219}
-  m_SizeDelta: {x: -8.375963, y: -4.6310463}
+  m_AnchorMin: {x: 0.18582581, y: 0.32671222}
+  m_AnchorMax: {x: 0.82834744, y: 0.65427476}
+  m_AnchoredPosition: {x: -22.8, y: 6}
+  m_SizeDelta: {x: -64.6, y: 159.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056588602
 MonoBehaviour:
@@ -55646,7 +55647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The spare key is hidden behind the plant near the emergence exit.
+  m_text: The spare key is hidden behind the plant near the emergency exit.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -55673,7 +55674,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.15
+  m_fontSize: 57.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -107347,7 +107348,7 @@ Transform:
   m_GameObject: {fileID: 2127719611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -9.778, y: -0.42, z: 2.83}
+  m_LocalPosition: {x: -9.778, y: -0.02, z: 2.83}
   m_LocalScale: {x: 0.18365717, y: 7.7617393, z: 17.100267}
   m_ConstrainProportionsScale: 0
   m_Children: []

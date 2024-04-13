@@ -7,6 +7,7 @@ public class CircleAnimation : MonoBehaviour
 {
     public List<GameObject> animObjects;
     private bool shouldAnimate = true;
+    private float rotationSpeed = 5f; // 旋转速度
 
     void Awake()
     {
@@ -29,7 +30,7 @@ public class CircleAnimation : MonoBehaviour
             foreach (GameObject go in animObjects)
             {
                 Vector3 angle = go.transform.eulerAngles;
-                angle.z += Time.deltaTime * 50f;
+                angle.z += rotationSpeed * Time.deltaTime; // 使用固定的旋转速度
                 go.transform.eulerAngles = angle;
             }
         }

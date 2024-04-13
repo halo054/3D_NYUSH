@@ -26,6 +26,8 @@ public class professor_door_controller : MonoBehaviour
     private bool isKeyPickedUpValue;
     public GameObject keyObject; // 这里放入您想要指定的 GameObject
     private bool haskeypicksound = false;
+    public bool isprofessorin = false;
+    public bool isweird = false;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -37,188 +39,213 @@ public class professor_door_controller : MonoBehaviour
         yield return new WaitForSeconds(audioClip.length);
         haskeypicksound = true; // 设置为true，确保只播放一次
     }
+
     void Update()
     {
-        if (keyObject == null)
+        if (!isprofessorin)
         {
-            keyObject = GameObject.FindGameObjectWithTag("RealKey");
-            // 获取关联的物体上的KeyInteraction脚本
-            KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
-
-            // 检查是否成功获取了KeyInteraction脚本
-            if (keyInteractionScript != null)
+            if (keyObject == null)
             {
-                // 获取isKeyPickedUp的值
-                isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
+                keyObject = GameObject.FindGameObjectWithTag("RealKey");
+                // 获取关联的物体上的KeyInteraction脚本
+                KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
+
+                // 检查是否成功获取了KeyInteraction脚本
+                if (keyInteractionScript != null)
+                {
+                    // 获取isKeyPickedUp的值
+                    isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
+                }
+
+                if (isKeyPickedUpValue)
+                {
+                    haskeypicksound = true;
+                }
             }
 
-            if (isKeyPickedUpValue)
+            if (!haskeypicksound && isKeyPickedUpValue)
             {
-                haskeypicksound = true;
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = keypickupsound;
+                    StartCoroutine(PlayAudioCoroutine(audioSource.clip));
+                }
             }
-        }
 
-        if (!haskeypicksound && isKeyPickedUpValue)
-        {
-            if (!audioSource.isPlaying)
+
+            // 检查是否提供了有效的 GameObject 引用
+            if (keyObject != null)
             {
-                audioSource.clip = keypickupsound;
-                StartCoroutine(PlayAudioCoroutine(audioSource.clip));
+                // 获取关联的物体上的KeyInteraction脚本
+                KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
+
+                // 检查是否成功获取了KeyInteraction脚本
+                if (keyInteractionScript != null)
+                {
+                    // 获取isKeyPickedUp的值
+                    isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
+                }
             }
-        }
 
-        
-        // 检查是否提供了有效的 GameObject 引用
-        if (keyObject != null)
-        {
-            // 获取关联的物体上的KeyInteraction脚本
-            KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
+            CheckLookingAtObject(); // 检测是否正在看着物体
 
-            // 检查是否成功获取了KeyInteraction脚本
-            if (keyInteractionScript != null)
+            if (is_locked == true && islooking == true)
             {
-                // 获取isKeyPickedUp的值
-                isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
+                if (isKeyPickedUpValue == false)
+                {
+                    key_hint.text = "Locked";
+                }
+                else
+                {
+                    key_hint.text = "Press E to use key";
+                }
             }
-        }
-
-        CheckLookingAtObject(); // 检测是否正在看着物体
- 
-        if (is_locked == true && islooking == true)
-        {
-            if (isKeyPickedUpValue == false)
+            else if (is_locked == false && hasRotated == true && islooking == true)
             {
-                 key_hint.text = "Locked";
+                key_hint.text = "Press E to close";
+            }
+            else if (is_locked == false && hasRotated == false && islooking == true)
+            {
+                key_hint.text = "Press E to open";
+            }
+
+            if (is_locked == false && hasRotated == true)
+            {
+                if (audioSource.clip != closeSound)
+                {
+                    audioSource.clip = closeSound;
+                }
+
+                rotationAmount = 90f;
             }
             else
             {
-                key_hint.text = "Press E to use key";
+                if (audioSource.clip != openSound)
+                {
+                    audioSource.clip = openSound;
+                }
+
+                rotationAmount = -90f;
             }
-        }
-        else if (is_locked == false && hasRotated == true && islooking == true)
-        {
-            key_hint.text = "Press E to close";
-        }
-        else if(is_locked == false && hasRotated == false && islooking == true)
-        {
-            key_hint.text = "Press E to open";
-        }
-        if (is_locked == false && hasRotated == true)
-        {
-            if (audioSource.clip != closeSound)
+
+            if (Input.GetKeyDown(KeyCode.E) && is_locked && islooking && isKeyPickedUpValue == true)
             {
-                audioSource.clip = closeSound;
+                is_locked = false;
             }
-            
-            rotationAmount = 90f;
+
+            // 检测是否按下了E键且没有正在旋转
+            if (Input.GetKeyDown(KeyCode.E) && !isRotating && !is_locked && islooking)
+            {
+
+                // 计算目标旋转角度
+                Vector3 targetEulerAngles = transform.eulerAngles + new Vector3(0f, rotationAmount, 0f);
+                targetRotation = Quaternion.Euler(targetEulerAngles);
+
+                initialRotation = transform.rotation;
+                rotationTimer = 0f;
+                isRotating = true;
+                if (hasRotated == true)
+                {
+                    hasRotated = false;
+                }
+                else
+                {
+                    hasRotated = true;
+                }
+
+            }
+
+            // 如果正在旋转，执行旋转动画
+            if (isRotating)
+            {
+                if (audioSource.isPlaying == false)
+                {
+                    audioSource.Play();
+                }
+
+                rotationTimer += Time.deltaTime;
+                float t = Mathf.Clamp01(rotationTimer / rotationDuration);
+
+                // 插值旋转
+                transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, SmoothStep(t));
+
+                // 如果旋转完成，将isRotating设置为false
+                if (t >= 1f)
+                {
+                    isRotating = false;
+                }
+            }
         }
+
         else
         {
-            if (audioSource.clip != openSound)
+            CheckLookingAtObject(); // 检测是否正在看着物体
+            if (islooking)
             {
-                audioSource.clip = openSound;
-            }
-
-            rotationAmount = -90f;
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && is_locked && islooking && isKeyPickedUpValue == true)
-        {
-            is_locked = false;
-        }
-        // 检测是否按下了E键且没有正在旋转
-        if (Input.GetKeyDown(KeyCode.E) && !isRotating && !is_locked && islooking)
-        {
-            
-            // 计算目标旋转角度
-            Vector3 targetEulerAngles = transform.eulerAngles + new Vector3(0f, rotationAmount, 0f);
-            targetRotation = Quaternion.Euler(targetEulerAngles);
-
-            initialRotation = transform.rotation;
-            rotationTimer = 0f;
-            isRotating = true;
-            if (hasRotated == true)
-            {
-                hasRotated = false;
-            }
-            else
-            {
-                hasRotated = true;
-            }
-            
-        }
-
-        // 如果正在旋转，执行旋转动画
-        if (isRotating)
-        {
-            if (audioSource.isPlaying == false)
-            {
-                audioSource.Play();
-            }
-            rotationTimer += Time.deltaTime;
-            float t = Mathf.Clamp01(rotationTimer / rotationDuration);
-
-            // 插值旋转
-            transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, SmoothStep(t));
-
-            // 如果旋转完成，将isRotating设置为false
-            if (t >= 1f)
-            {
-                isRotating = false;
+                if (isweird)
+                {
+                    key_hint.text = "I should stay away from this door...";
+                }
+                else
+                {
+                    key_hint.text = "Professor is inside. I should not disturb him...";
+                }
             }
         }
     }
 
     // 自定义的平滑插值方法
-    float SmoothStep(float t)
-    {
-        return t * t * (3f - 2f * t);
-    }
-    private void CheckLookingAtObject()
-    {
-        float maxDistance = 2.5f; // 设置射线的最大长度
-        Camera mainCamera = Camera.main; // 获取主摄像机
-
-        // 创建从摄像机位置发射的射线
-        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-        RaycastHit hit;
-        
-
-        // 如果射线与物体相交
-        if (Physics.Raycast(ray, out hit, maxDistance))
+        float SmoothStep(float t)
         {
-            // 检查相交的物体是否是当前物体
-            if (hit.collider.gameObject == gameObject)
+            return t * t * (3f - 2f * t);
+        }
+
+        private void CheckLookingAtObject()
+        {
+            float maxDistance = 2.5f; // 设置射线的最大长度
+            Camera mainCamera = Camera.main; // 获取主摄像机
+
+            // 创建从摄像机位置发射的射线
+            Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
+            RaycastHit hit;
+
+
+            // 如果射线与物体相交
+            if (Physics.Raycast(ray, out hit, maxDistance))
             {
-                islooking = true;
-                ShowGUI(); // 如果玩家正在看着物体，显示GUI提示
-                return;
+                // 检查相交的物体是否是当前物体
+                if (hit.collider.gameObject == gameObject)
+                {
+                    islooking = true;
+                    ShowGUI(); // 如果玩家正在看着物体，显示GUI提示
+                    return;
+                }
+            }
+
+            // 如果没有射线与物体相交
+            if (islooking == true)
+            {
+                islooking = false;
+                HideGUI(); // 如果玩家没有看着物体，隐藏GUI提示
             }
         }
 
-        // 如果没有射线与物体相交
-        if (islooking == true)
+        private void ShowGUI()
         {
-            islooking = false;
-            HideGUI(); // 如果玩家没有看着物体，隐藏GUI提示
+            // 显示TextMeshPro GUI
+            if (key_hint != null)
+            {
+                key_hint.gameObject.SetActive(true);
+            }
         }
-    }
 
-    private void ShowGUI()
-    {
-        // 显示TextMeshPro GUI
-        if (key_hint != null)
+        private void HideGUI()
         {
-            key_hint.gameObject.SetActive(true);
+            // 隐藏TextMeshPro GUI
+            if (key_hint != null)
+            {
+                key_hint.gameObject.SetActive(false);
+            }
         }
-    }
-
-    private void HideGUI()
-    {
-        // 隐藏TextMeshPro GUI
-        if (key_hint != null)
-        {
-            key_hint.gameObject.SetActive(false);
-        }
-    }
+    
 }
