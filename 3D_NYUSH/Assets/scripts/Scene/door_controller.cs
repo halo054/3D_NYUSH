@@ -20,8 +20,10 @@ public class door_controller : MonoBehaviour
     private bool islooking = false;
     public AudioClip openSound;
     public AudioClip closeSound;
-
     private AudioSource audioSource;
+    public AudioClip lockSound;
+    private bool wait = false;
+    private bool hasplay = false;
 
     void Start()
     {
@@ -34,35 +36,67 @@ public class door_controller : MonoBehaviour
         
         CheckLookingAtObject(); // 检测是否正在看着物体
  
-        if (is_locked == true && islooking == true)
+        if (islooking && !isRotating)
         {
-            key_hint.text = "Locked";
-        }
-        else if (is_locked == false && hasRotated == true && islooking == true)
-        {
-            key_hint.text = "Press E to close";
-        }
-        else if(is_locked == false && hasRotated == false && islooking == true)
-        {
-            key_hint.text = "Press E to open";
-        }
-        if (is_locked == false && hasRotated == true)
-        {
-            if (audioSource.clip != closeSound)
+            if (hasRotated)
             {
-                audioSource.clip = closeSound;
+                key_hint.text = "Press E to close";
             }
-            
-            rotationAmount = 90f;
-        }
-        else
-        {
-            if (audioSource.clip != openSound)
+            else
             {
-                audioSource.clip = openSound;
+                key_hint.text = "Press E to open";
+            }
+        }
+
+        if (!is_locked)
+        {
+            if (hasRotated)
+            {
+                if (audioSource.clip != closeSound)
+                {
+                    audioSource.clip = closeSound;
+                }
+
+                rotationAmount = 90f;
+            }
+            else
+            {
+                if (audioSource.clip != openSound)
+                {
+                    audioSource.clip = openSound;
+                }
+
+                rotationAmount = -90f;
+            }
+        }
+
+        if (is_locked)
+        {
+            if (Input.GetKeyDown(KeyCode.E) && islooking)
+            {
+                wait = true;
+                hasplay = false;
+            }
+            if (!islooking)
+            {
+                wait = false;
+            }
+        }
+            
+        if (wait)
+        {
+            if (audioSource.clip != lockSound)
+            {
+                audioSource.clip = lockSound;
             }
 
-            rotationAmount = -90f;
+            key_hint.text = "Locked";
+                
+            if (audioSource.isPlaying == false && !hasplay)
+            {
+                audioSource.Play();
+                hasplay = true;
+            }
         }
         // 检测是否按下了E键且没有正在旋转
         if (Input.GetKeyDown(KeyCode.E) && !isRotating && !is_locked && islooking)

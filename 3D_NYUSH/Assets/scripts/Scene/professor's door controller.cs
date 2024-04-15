@@ -22,12 +22,15 @@ public class professor_door_controller : MonoBehaviour
     public AudioClip openSound;
     public AudioClip closeSound;
     public AudioClip keypickupsound;
+    public AudioClip lockSound;
     private AudioSource audioSource;
     private bool isKeyPickedUpValue;
     public GameObject keyObject; // 这里放入您想要指定的 GameObject
     private bool haskeypicksound = false;
     public bool isprofessorin = false;
     public bool isweird = false;
+    private bool wait = false;
+    private bool hasplay = false;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -41,96 +44,114 @@ public class professor_door_controller : MonoBehaviour
     }
 
     void Update()
-    {
+    {           
+        if (keyObject == null)
+        {
+            keyObject = GameObject.FindGameObjectWithTag("RealKey");
+            // 获取关联的物体上的KeyInteraction脚本
+            KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
+
+            // 检查是否成功获取了KeyInteraction脚本
+            if (keyInteractionScript != null)
+            {
+                // 获取isKeyPickedUp的值
+                isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
+            }
+
+            if (isKeyPickedUpValue)
+            {
+                haskeypicksound = true;
+            }
+        }
+
+        if (!haskeypicksound && isKeyPickedUpValue)
+        {
+            is_locked = false;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = keypickupsound;
+                StartCoroutine(PlayAudioCoroutine(audioSource.clip));
+            }
+        }
+
+
+        // 检查是否提供了有效的 GameObject 引用
+        if (keyObject != null)
+        {
+            // 获取关联的物体上的KeyInteraction脚本
+            KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
+
+            // 检查是否成功获取了KeyInteraction脚本
+            if (keyInteractionScript != null)
+            {
+                // 获取isKeyPickedUp的值
+                isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
+            }
+        }
+        CheckLookingAtObject(); // 检测是否正在看着物体
         if (!isprofessorin)
         {
-            if (keyObject == null)
+            if (islooking && !isRotating)
             {
-                keyObject = GameObject.FindGameObjectWithTag("RealKey");
-                // 获取关联的物体上的KeyInteraction脚本
-                KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
-
-                // 检查是否成功获取了KeyInteraction脚本
-                if (keyInteractionScript != null)
+                if (hasRotated)
                 {
-                    // 获取isKeyPickedUp的值
-                    isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
-                }
-
-                if (isKeyPickedUpValue)
-                {
-                    haskeypicksound = true;
-                }
-            }
-
-            if (!haskeypicksound && isKeyPickedUpValue)
-            {
-                if (!audioSource.isPlaying)
-                {
-                    audioSource.clip = keypickupsound;
-                    StartCoroutine(PlayAudioCoroutine(audioSource.clip));
-                }
-            }
-
-
-            // 检查是否提供了有效的 GameObject 引用
-            if (keyObject != null)
-            {
-                // 获取关联的物体上的KeyInteraction脚本
-                KeyInteraction keyInteractionScript = keyObject.GetComponent<KeyInteraction>();
-
-                // 检查是否成功获取了KeyInteraction脚本
-                if (keyInteractionScript != null)
-                {
-                    // 获取isKeyPickedUp的值
-                    isKeyPickedUpValue = keyInteractionScript.IsKeyPickedUp();
-                }
-            }
-
-            CheckLookingAtObject(); // 检测是否正在看着物体
-
-            if (is_locked == true && islooking == true)
-            {
-                if (isKeyPickedUpValue == false)
-                {
-                    key_hint.text = "Locked";
+                    key_hint.text = "Press E to close";
                 }
                 else
                 {
-                    key_hint.text = "Press E to use key";
+                    key_hint.text = "Press E to open";
                 }
             }
-            else if (is_locked == false && hasRotated == true && islooking == true)
-            {
-                key_hint.text = "Press E to close";
-            }
-            else if (is_locked == false && hasRotated == false && islooking == true)
-            {
-                key_hint.text = "Press E to open";
-            }
 
-            if (is_locked == false && hasRotated == true)
+            if (!is_locked)
             {
-                if (audioSource.clip != closeSound)
+                if (hasRotated)
                 {
-                    audioSource.clip = closeSound;
-                }
+                    if (audioSource.clip != closeSound)
+                    {
+                        audioSource.clip = closeSound;
+                    }
 
-                rotationAmount = 90f;
-            }
-            else
-            {
-                if (audioSource.clip != openSound)
+                    rotationAmount = 90f;
+                }
+                else
                 {
-                    audioSource.clip = openSound;
-                }
+                    if (audioSource.clip != openSound)
+                    {
+                        audioSource.clip = openSound;
+                    }
 
-                rotationAmount = -90f;
+                    rotationAmount = -90f;
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && is_locked && islooking && isKeyPickedUpValue == true)
+            if (!isKeyPickedUpValue)
             {
-                is_locked = false;
+                if (Input.GetKeyDown(KeyCode.E) && islooking)
+                {
+                    wait = true;
+                    hasplay = false;
+                }
+                if (!islooking)
+                {
+                    wait = false;
+                }
+            }
+            
+            if (wait)
+            {
+                if (audioSource.clip != lockSound)
+                {
+                    audioSource.clip = lockSound;
+                }
+
+                key_hint.text = "Locked";
+                
+                if (audioSource.isPlaying == false && !hasplay)
+                {
+                    audioSource.Play();
+                    hasplay = true;
+                }
             }
 
             // 检测是否按下了E键且没有正在旋转
@@ -144,7 +165,7 @@ public class professor_door_controller : MonoBehaviour
                 initialRotation = transform.rotation;
                 rotationTimer = 0f;
                 isRotating = true;
-                if (hasRotated == true)
+                if (hasRotated)
                 {
                     hasRotated = false;
                 }
@@ -179,7 +200,6 @@ public class professor_door_controller : MonoBehaviour
 
         else
         {
-            CheckLookingAtObject(); // 检测是否正在看着物体
             if (islooking)
             {
                 if (isweird)
@@ -223,7 +243,7 @@ public class professor_door_controller : MonoBehaviour
             }
 
             // 如果没有射线与物体相交
-            if (islooking == true)
+            if (islooking)
             {
                 islooking = false;
                 HideGUI(); // 如果玩家没有看着物体，隐藏GUI提示

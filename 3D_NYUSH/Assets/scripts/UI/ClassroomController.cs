@@ -9,6 +9,7 @@ public class ClassroomController : MonoBehaviour
     public GameObject classroom_text;
     public Camera mainCamera; // 指向您的主摄像机
     private bool islooking = false;
+    public bool beforeclass = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,10 @@ public class ClassroomController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckLookingAtObject(); // 检测是否正在看着物体
+        if (beforeclass)
+        {
+            CheckLookingAtObject(); // 检测是否正在看着物体
+        }
     }
     private void CheckLookingAtObject()
     {

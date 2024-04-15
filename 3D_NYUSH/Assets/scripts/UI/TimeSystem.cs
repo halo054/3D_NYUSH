@@ -17,6 +17,7 @@ public class GameTimeManager : MonoBehaviour
     public GameObject targetObject; // 要切换激活状态的物体
     private AudioSource audioSource; // 用于播放音乐的AudioSource组件
     private bool isObjectActive = false; // 物体是否激活
+    public bool isbeforeclass = true;
     void Start()
     {
         // 初始化游戏时间
@@ -58,7 +59,7 @@ public class GameTimeManager : MonoBehaviour
         {
             textMesh.text = string.Format("{0:D2}:{1:D2}:{2:D2}", hours, minutes, seconds);
         }
-        if (hours == 16 && minutes == 25 && seconds == 0)
+        if (hours == 16 && minutes == 25 && seconds == 0 && isbeforeclass)
         {
             // 播放音乐并切换物体激活状态
             PlayMusicAndSwitchObjectActiveState();

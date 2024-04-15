@@ -23,8 +23,15 @@ public class UI_Manager : MonoBehaviour
     public CameraController cameraController; // 摄像机控制器引用
     // 灰色透明图片UI元素的引用
     public Image grayOverlayImage;
+    public TextMeshProUGUI textMeshPro;
+    public float displayTime = 10f;
     private void Start()
     {
+        // 显示文本
+        textMeshPro.enabled = true;
+
+        // 启动协程来在指定时间后隐藏文本
+        StartCoroutine(HideTextAfterDelay(displayTime));
         grayOverlayImage.gameObject.SetActive(false);
         pausePanel.SetActive(false);
         smartPhone.SetActive(false);
@@ -48,9 +55,21 @@ public class UI_Manager : MonoBehaviour
             Debug.LogError("CameraController not found in the scene. Please add it to a game object.");
         }
     }
+    IEnumerator HideTextAfterDelay(float delay)
+    {
+        // 等待一段时间
+        yield return new WaitForSeconds(delay);
 
+        // 隐藏文本
+        textMeshPro.enabled = false;
+    }
     void Update()
     {
+        // 如果按下了 Tab 键，隐藏文本
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            textMeshPro.enabled = false;
+        }
         // 检查是否按下了Esc键
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -151,6 +151,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: RotateTag
       objectReference: {fileID: 0}
+    - target: {fileID: 114013126220821492, guid: 521ee56b55e55de4ca255c0a886ab4f9, type: 3}
+      propertyPath: New_rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 114192476966592360, guid: 521ee56b55e55de4ca255c0a886ab4f9, type: 3}
       propertyPath: m_Color.a
       value: 1
