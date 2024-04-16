@@ -60,6 +60,7 @@ public class professor_door_controller : MonoBehaviour
 
             if (isKeyPickedUpValue)
             {
+                is_locked = false;
                 haskeypicksound = true;
             }
         }
@@ -204,7 +205,7 @@ public class professor_door_controller : MonoBehaviour
             {
                 if (isweird)
                 {
-                    key_hint.text = "I should stay away from this door...";
+                    key_hint.text = "The music sounds weird...";
                 }
                 else
                 {

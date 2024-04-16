@@ -638,7 +638,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d96902072345ba44abb5bbe09ea73c17, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.025
+  m_Volume: 0.075
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -771,7 +771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07440618, y: 0.19045646}
   m_AnchorMax: {x: 0.90700006, y: 0.8096958}
-  m_AnchoredPosition: {x: 0.3269043, y: -0.39110184}
+  m_AnchoredPosition: {x: 0.3269043, y: -0.39109993}
   m_SizeDelta: {x: -1.1553001, y: -1.5524006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1170853126
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.25
+  m_fontSize: 31.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -905,7 +905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.087483615, y: 0.108}
   m_AnchorMax: {x: 0.9250001, y: 0.84878355}
-  m_AnchoredPosition: {x: -0.73011017, y: 1.5398026}
+  m_AnchoredPosition: {x: -0.73010254, y: 1.5398026}
   m_SizeDelta: {x: 0.6310005, y: -2.0339003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349808202
@@ -955,7 +955,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.65
+  m_fontSize: 30.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1097,7 +1097,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Day 1
+          m_StringArgument: Day 1 before class
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1793332948

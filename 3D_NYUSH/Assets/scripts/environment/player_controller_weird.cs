@@ -37,25 +37,21 @@ public class player_controller_weird : MonoBehaviour
             float distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
 
             // 获取脚步声音效的音量
-            float volume = Mathf.Lerp(1f, 0f, Mathf.InverseLerp(minVolumeDistance, maxVolumeDistance, distanceToTarget));
+            float volume = Mathf.Lerp(0.1f, 0f, Mathf.InverseLerp(minVolumeDistance, maxVolumeDistance, distanceToTarget));
 
             // 设置音频源的音量
             audioSource.volume = volume;
 
-            float speed = distanceToTarget < lastDistanceToTarget ? moveSpeedNear : moveSpeedFar;
-if (distanceToTarget > 15.0f)
-                {
-                    speed = moveSpeedNear;
-                }
-else
-{
-    speed = moveSpeedFar;
-}
-            
-
-
-            // 更新上一帧距离
-            lastDistanceToTarget = distanceToTarget;
+            // 根据距离调整速度
+            float speed;
+            if (distanceToTarget < 15.0f)
+            {
+                speed = Mathf.Lerp(moveSpeedNear, moveSpeedFar, Mathf.InverseLerp(0, 15, distanceToTarget));
+            }
+            else
+            {
+                speed = moveSpeedFar;
+            }
 
             // 获取输入
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -74,8 +70,7 @@ else
             Vector3 cameraForward = Vector3.Scale(cameraTransform.forward, new Vector3(1, 0, 1)).normalized;
 
             // 计算移动向量
-            Vector3 movement = (horizontalInput * cameraTransform.right + verticalInput * cameraForward) * speed *
-                               Time.deltaTime;
+            Vector3 movement = (horizontalInput * cameraTransform.right + verticalInput * cameraForward) * speed * Time.deltaTime;
 
             // 应用移动
             characterController.Move(movement);
