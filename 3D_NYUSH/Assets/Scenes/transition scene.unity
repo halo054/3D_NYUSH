@@ -565,10 +565,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9f57bdd518fa819489cb7200591a3430, type: 3}
   - {fileID: 8300000, guid: 0ad14362df660f1498f20cb3a493cab5, type: 3}
   - {fileID: 8300000, guid: 0ad14362df660f1498f20cb3a493cab5, type: 3}
+  - {fileID: 8300000, guid: 0ad14362df660f1498f20cb3a493cab5, type: 3}
   sceneNames:
   - Day 1 after class
   - Day 2 after class
   - Day 3 after class
+  - Day 4 after class
   haskey: 0
   volume: 0.01
 --- !u!4 &1240834917

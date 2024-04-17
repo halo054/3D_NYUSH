@@ -24,6 +24,7 @@ public class door_controller : MonoBehaviour
     public AudioClip lockSound;
     private bool wait = false;
     private bool hasplay = false;
+    public bool isusing = false;
 
     void Start()
     {
@@ -90,8 +91,15 @@ public class door_controller : MonoBehaviour
                 audioSource.clip = lockSound;
             }
 
-            key_hint.text = "Locked";
-                
+            if (!isusing)
+            {
+                key_hint.text = "Locked";
+            }
+            else
+            {
+                key_hint.text = "Reserved";
+            }
+
             if (audioSource.isPlaying == false && !hasplay)
             {
                 audioSource.Play();

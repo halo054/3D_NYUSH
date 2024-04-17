@@ -20,6 +20,11 @@ public class GameTimeManager : MonoBehaviour
     public bool isbeforeclass = true;
     void Start()
     {
+        if (!isbeforeclass)
+        {
+            initialHour = 18;
+            initialMinute = 0;
+        }
         // 初始化游戏时间
         timeSinceStart = initialHour * 3600 + initialMinute * 60 + initialSeconds; // 将小时、分钟和秒转换为秒
         // 记录当前时间作为上一秒钟的时间
@@ -35,6 +40,8 @@ public class GameTimeManager : MonoBehaviour
         {
             targetObject.SetActive(isObjectActive);
         }
+
+        
     }
 
     void Update()

@@ -25,13 +25,22 @@ public class UI_Manager : MonoBehaviour
     public Image grayOverlayImage;
     public TextMeshProUGUI textMeshPro;
     public float displayTime = 10f;
+    public bool emailremind = true;
     private void Start()
     {
         // 显示文本
         textMeshPro.enabled = true;
 
         // 启动协程来在指定时间后隐藏文本
-        StartCoroutine(HideTextAfterDelay(displayTime));
+        if (emailremind)
+        {
+            StartCoroutine(HideTextAfterDelay(displayTime));
+        }
+        else
+        {
+            textMeshPro.enabled = false;
+        }
+
         grayOverlayImage.gameObject.SetActive(false);
         pausePanel.SetActive(false);
         smartPhone.SetActive(false);
@@ -54,6 +63,7 @@ public class UI_Manager : MonoBehaviour
         {
             Debug.LogError("CameraController not found in the scene. Please add it to a game object.");
         }
+
     }
     IEnumerator HideTextAfterDelay(float delay)
     {
@@ -65,6 +75,10 @@ public class UI_Manager : MonoBehaviour
     }
     void Update()
     {
+        if (!anynew_email)
+        {
+            new_email.SetActive(false);
+        }
         // 如果按下了 Tab 键，隐藏文本
         if (Input.GetKeyDown(KeyCode.Tab))
         {
