@@ -22,8 +22,8 @@ public class GameTimeManager : MonoBehaviour
     {
         if (!isbeforeclass)
         {
-            initialHour = 18;
-            initialMinute = 0;
+            initialHour = 17;
+            initialMinute = 15;
         }
         // 初始化游戏时间
         timeSinceStart = initialHour * 3600 + initialMinute * 60 + initialSeconds; // 将小时、分钟和秒转换为秒
