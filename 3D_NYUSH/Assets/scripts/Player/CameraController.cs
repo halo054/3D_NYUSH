@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
     private float mouseY; // 鼠标Y轴移动的偏移量
 
     public GameObject smartPhone;
+    public GameObject screen;
+    private bool isscreen = false;
     private bool inputEnabled = true; // 控制摄像机是否接收输入
 
     public void EnableInput()
@@ -31,9 +33,20 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (screen != null)
+        {
+            if (!screen.activeSelf)
+            {
+                isscreen = false;
+            }
+            else
+            {
+                isscreen = true;
+            }
+        }
         // 如果输入被禁用，则不处理鼠标输入
         if (!inputEnabled) return;
-        if (!smartPhone.activeSelf)
+        if (!smartPhone.activeSelf && !isscreen)
         {
             // 获取鼠标输入
             mouseX += Input.GetAxis("Mouse X") * sensitivity;
