@@ -46,6 +46,11 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // 如果当前场景是"start Scene"，则销毁自身
+        if (SceneManager.GetActiveScene().name == "start Scene")
+        {
+            Destroy(gameObject);
+        }
         if (circle == null)
         {
             // 在场景中查找带有特定标签的物体，并将其赋值给变量

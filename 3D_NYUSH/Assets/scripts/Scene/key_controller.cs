@@ -33,7 +33,12 @@ public class KeyInteraction : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "transition scene")
+        // 如果当前场景是"start Scene"，则销毁自身
+        if (SceneManager.GetActiveScene().name == "start Scene")
+        {
+            Destroy(gameObject);
+        }
+        if (scene.name != "transition scene" && scene.name != "start Scene" && scene.name != "Ending bad" && scene.name != "Ending good" && scene.name != "Ending leave")
         {
             if (interactionText == null)
             {
