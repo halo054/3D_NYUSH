@@ -215,4 +215,5 @@ public class UI_Manager : MonoBehaviour
         cameraController.EnableInput();
         Time.timeScale = 1f; // 恢复游戏
     }
+    
 }

@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
 
     // 存储当前正在播放的音频源
     private AudioSource currentAudioSource;
+    public GameObject circle;
+
 
     void Awake()
     {
@@ -44,6 +46,15 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (circle == null)
+        {
+            // 在场景中查找带有特定标签的物体，并将其赋值给变量
+            circle = GameObject.FindGameObjectWithTag("circle");
+            if (circle != null)
+            {
+                circle.SetActive(true);
+            }
+        }
         // 当场景加载完成时，检查是否需要播放音频
         if (scene.name == "transition scene")
         {

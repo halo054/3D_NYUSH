@@ -38,4 +38,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day 5.unity
     guid: 91918b54323161140b9dcbeb000c219c
+  - enabled: 1
+    path: Assets/Scenes/Ending leave.unity
+    guid: 76dcf5baf3fccfe49afe9f91a2463ac8
+  - enabled: 1
+    path: Assets/Scenes/Ending bad.unity
+    guid: 414e8e6878ba4094da246ad0798306e1
+  - enabled: 1
+    path: Assets/Scenes/Ending good.unity
+    guid: 40dbb820d3fa7384a90a0757da34bc60
   m_configObjects: {}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class ProgressBarCircle : MonoBehaviour
     private Image bar, barBackground, Mask;
     private float barValue;
     private bool isIncreasing;
+    public bool isday5 = false;
+    public GameObject classroomdoor;
+    private bool islooking = false;
 
     public float BarValue
     {
@@ -27,15 +31,19 @@ public class ProgressBarCircle : MonoBehaviour
             UpdateValue(barValue);
 
             // 当进度条充满时触发场景切换
-            if (barValue >= 100f)
+            if (barValue >= 99f)
             {
-                SwitchToTargetScene();
+                if (!isday5)
+                {
+                    SwitchToTargetScene();
+                }
             }
         }
     }
 
     private void Awake()
     {
+        
         barBackground = transform.Find("BarBackgroundCircle").GetComponent<Image>();
         bar = transform.Find("BarCircle").GetComponent<Image>();
         Mask = transform.Find("Mask").GetComponent<Image>();
@@ -43,6 +51,7 @@ public class ProgressBarCircle : MonoBehaviour
 
     private void Start()
     {
+        
         bar.color = BarColor;
         Mask.color = MaskColor;
         barBackground.color = BarBackGroundColor;
@@ -58,21 +67,28 @@ public class ProgressBarCircle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.E))
-        {
-            isIncreasing = true;
-        }
-        else
-        {
-            isIncreasing = false;
-            // Reset the progress if "E" key is released
-            BarValue = 0f;
-        }
+        ClassroomController Interacted_object  = classroomdoor.GetComponent<ClassroomController>();
+        islooking = Interacted_object.GetIslooking();
 
-        if (isIncreasing)
-        {
-            BarValue += Time.deltaTime * 100f; // Adjust this multiplier for desired speed
-        }
+        if (Input.GetKey(KeyCode.E))
+            {
+                isIncreasing = true;
+            }
+            else
+            {
+                isIncreasing = false;
+                // Reset the progress if "E" key is released
+                BarValue = 0f;
+            }
+
+            if (isIncreasing)
+            {
+                BarValue += Time.deltaTime * 100f; // Adjust this multiplier for desired speed
+            }
+            if (islooking)
+            {
+                BarValue = 0f;
+            }
     }
 
     // 新添加的方法，用于切换到目标场景
@@ -86,5 +102,9 @@ public class ProgressBarCircle : MonoBehaviour
         {
             Debug.LogWarning("Target scene name is not specified!");
         }
+    }
+    public float GetBarValue()
+    {
+        return BarValue;
     }
 }

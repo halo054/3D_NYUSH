@@ -7,6 +7,7 @@ public class HideMouse : MonoBehaviour
     public GameObject pausepanel;
     public GameObject smartPhone;
     public GameObject alarmclock;
+    public GameObject musicroomscreen;
     void Start()
     {
         // 隐藏鼠标
@@ -23,6 +24,13 @@ public class HideMouse : MonoBehaviour
         {
             Cursor.visible = false;
         }
-        
+
+        if (musicroomscreen != null)
+        {
+            if (musicroomscreen.activeSelf)
+            {
+                Cursor.visible = true;
+            }
+        }
     }
 }

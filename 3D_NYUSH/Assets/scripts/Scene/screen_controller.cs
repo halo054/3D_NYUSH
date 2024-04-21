@@ -26,21 +26,25 @@ public class screen_controller : MonoBehaviour
     void Update()
     {
         CheckLookingAtObject(); // 检测是否正在看着物体
-        if (!hasE)
+
+        if (islooking)
         {
-            key_hint.text = "Press E to check";
-            HideScreen();
-            // 恢复游戏时，通知摄像机控制器恢复处理输入
-            cameraController.EnableInput();
-            Time.timeScale = 1f; // 恢复游戏
-        }
-        else
-        {
-            // 暂停游戏时，通知摄像机控制器停止处理输入
-            cameraController.DisableInput();
-            Time.timeScale = 0f; // 暂停游戏
-            key_hint.text = "Press E to return";
-            ShowScreen();
+            if (!hasE)
+            {
+                key_hint.text = "Press E to check";
+                HideScreen();
+                // 恢复游戏时，通知摄像机控制器恢复处理输入
+                cameraController.EnableInput();
+                Time.timeScale = 1f; // 恢复游戏
+            }
+            else
+            {
+                // 暂停游戏时，通知摄像机控制器停止处理输入
+                cameraController.DisableInput();
+                Time.timeScale = 0f; // 暂停游戏
+                key_hint.text = "Press E to return";
+                ShowScreen();
+            }
         }
 
         if (islooking)

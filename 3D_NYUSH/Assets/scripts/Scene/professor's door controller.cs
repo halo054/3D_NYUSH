@@ -31,6 +31,7 @@ public class professor_door_controller : MonoBehaviour
     public bool isweird = false;
     private bool wait = false;
     private bool hasplay = false;
+    public bool isday5 = false;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -152,6 +153,11 @@ public class professor_door_controller : MonoBehaviour
                 {
                     audioSource.Play();
                     hasplay = true;
+                }
+
+                if (isday5 && key_hint.text == "Locked")
+                {
+                    key_hint.text = "";
                 }
             }
 

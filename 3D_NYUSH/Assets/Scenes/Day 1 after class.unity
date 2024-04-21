@@ -493,7 +493,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.6
+  m_fontSize: 18.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2121,6 +2121,9 @@ MonoBehaviour:
   classroom_text: {fileID: 8331083}
   mainCamera: {fileID: 39884609}
   beforeclass: 1
+  close_hint: {fileID: 0}
+  audioSource: {fileID: 0}
+  specifiedMusic: {fileID: 0}
 --- !u!1 &45388311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,6 +2429,7 @@ MonoBehaviour:
   pausepanel: {fileID: 2057571293}
   smartPhone: {fileID: 1595068090}
   alarmclock: {fileID: 116882586}
+  musicroomscreen: {fileID: 0}
 --- !u!114 &54544617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4379,7 +4383,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.95
+  m_fontSize: 11.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6122,7 +6126,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.4
+  m_fontSize: 11.45
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8524,6 +8528,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114501253246479570, guid: 24d5ab3d18c91fc41a2213a537e21ee7, type: 3}
+      propertyPath: classroomdoor
+      value: 
+      objectReference: {fileID: 44582909}
+    - target: {fileID: 114501253246479570, guid: 24d5ab3d18c91fc41a2213a537e21ee7, type: 3}
       propertyPath: targetSceneName
       value: Day 2 before class
       objectReference: {fileID: 0}
@@ -10454,10 +10462,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 866311722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.13467029, y: 0.15426849}
-  m_AnchorMax: {x: 0.18100001, y: 0.2293087}
-  m_AnchoredPosition: {x: -0.4678955, y: 0.2990265}
-  m_SizeDelta: {x: -0.015792847, y: 1.1259155}
+  m_AnchorMin: {x: 0.069000006, y: 0.08153756}
+  m_AnchorMax: {x: 0.09114125, y: 0.120000005}
+  m_AnchoredPosition: {x: 0.2000122, y: 0.19999695}
+  m_SizeDelta: {x: -0.9385004, y: -0.5667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227413197
 MonoBehaviour:
@@ -14576,7 +14584,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.05
+  m_fontSize: 10.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15116,7 +15124,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.85
+  m_fontSize: 15.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -23209,6 +23217,9 @@ MonoBehaviour:
   classroom_text: {fileID: 321997551}
   mainCamera: {fileID: 39884609}
   beforeclass: 0
+  close_hint: {fileID: 0}
+  audioSource: {fileID: 0}
+  specifiedMusic: {fileID: 0}
 --- !u!1 &478302953
 GameObject:
   m_ObjectHideFlags: 0
@@ -29113,7 +29124,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.1
+  m_fontSize: 8.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -30408,10 +30419,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1538601212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.025, y: 0.045}
-  m_AnchorMax: {x: 0.080000006, y: 0.10670817}
-  m_AnchoredPosition: {x: -0.60009766, y: -3.6921387}
-  m_SizeDelta: {x: 0.7999573, y: -0.93525314}
+  m_AnchorMin: {x: 0.02412127, y: 0.038152255}
+  m_AnchorMax: {x: 0.080000006, y: 0.102000006}
+  m_AnchoredPosition: {x: -0.100097656, y: -0.19213867}
+  m_SizeDelta: {x: -0.20004272, y: -1.9352531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &608628029
 MonoBehaviour:
@@ -33504,6 +33515,7 @@ MonoBehaviour:
   keyObject: {fileID: 841354442}
   isprofessorin: 0
   isweird: 0
+  isday5: 0
 --- !u!1 &665950525
 GameObject:
   m_ObjectHideFlags: 0
@@ -37212,7 +37224,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.6
+  m_fontSize: 18.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -45649,8 +45661,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -204.5, y: -113.04999}
-  m_SizeDelta: {x: -409.01, y: -233.9}
+  m_AnchoredPosition: {x: 0.0025634766, y: 1.9500122}
+  m_SizeDelta: {x: -0.0050049, y: -3.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &868238558
 GameObject:
@@ -45983,12 +45995,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.1
+  m_fontSize: 33.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 0
+  m_fontSizeMax: 32767
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -51941,7 +51953,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.55
+  m_fontSize: 21.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -54385,7 +54397,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9.85
+  m_fontSize: 8.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -56093,7 +56105,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.75
+  m_fontSize: 10.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -57438,12 +57450,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.25
+  m_fontSize: 30.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 0
+  m_fontSizeMax: 32767
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -64817,7 +64829,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.55
+  m_fontSize: 17.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -68504,7 +68516,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.1
+  m_fontSize: 11.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -77113,7 +77125,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.7
+  m_fontSize: 11.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -79874,8 +79886,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 204.5, y: 115}
-  m_SizeDelta: {x: 409.0099, y: 230}
+  m_AnchoredPosition: {x: -0.0024719238, y: 0}
+  m_SizeDelta: {x: 0.0048828, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1538742785
 GameObject:
@@ -80723,6 +80735,10 @@ PrefabInstance:
       propertyPath: MaskColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114501253246479570, guid: 24d5ab3d18c91fc41a2213a537e21ee7, type: 3}
+      propertyPath: classroomdoor
+      value: 
+      objectReference: {fileID: 475754449}
     - target: {fileID: 114501253246479570, guid: 24d5ab3d18c91fc41a2213a537e21ee7, type: 3}
       propertyPath: targetSceneName
       value: transition scene
@@ -86980,6 +86996,9 @@ MonoBehaviour:
   classroom_text: {fileID: 726981074}
   mainCamera: {fileID: 39884609}
   beforeclass: 1
+  close_hint: {fileID: 0}
+  audioSource: {fileID: 0}
+  specifiedMusic: {fileID: 0}
 --- !u!1 &1662075031
 GameObject:
   m_ObjectHideFlags: 0
@@ -88537,7 +88556,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.7
+  m_fontSize: 23.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -88900,7 +88919,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.55
+  m_fontSize: 11.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -89234,7 +89253,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.5
+  m_fontSize: 13.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -89468,7 +89487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1713478945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94902,12 +94921,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.25
+  m_fontSize: 45.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 0
+  m_fontSizeMax: 32767
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -101278,7 +101297,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.25
+  m_fontSize: 13.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -101622,7 +101641,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.35
+  m_fontSize: 11
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -105249,7 +105268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2057571294
 RectTransform:
   m_ObjectHideFlags: 0
@@ -106939,6 +106958,10 @@ PrefabInstance:
       propertyPath: MaskColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114501253246479570, guid: 24d5ab3d18c91fc41a2213a537e21ee7, type: 3}
+      propertyPath: classroomdoor
+      value: 
+      objectReference: {fileID: 1661118924}
     - target: {fileID: 114501253246479570, guid: 24d5ab3d18c91fc41a2213a537e21ee7, type: 3}
       propertyPath: targetSceneName
       value: Day 2 before class
@@ -109071,7 +109094,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.55
+  m_fontSize: 11.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

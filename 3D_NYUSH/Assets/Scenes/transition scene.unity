@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 1612507885281250, guid: 521ee56b55e55de4ca255c0a886ab4f9, type: 3}
+      propertyPath: m_TagString
+      value: circle
+      objectReference: {fileID: 0}
     - target: {fileID: 1682707814384516, guid: 521ee56b55e55de4ca255c0a886ab4f9, type: 3}
       propertyPath: m_TagString
       value: RotateTag
@@ -562,17 +566,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 9f57bdd518fa819489cb7200591a3430, type: 3}
-  - {fileID: 8300000, guid: 0ad14362df660f1498f20cb3a493cab5, type: 3}
-  - {fileID: 8300000, guid: 0ad14362df660f1498f20cb3a493cab5, type: 3}
-  - {fileID: 8300000, guid: 0ad14362df660f1498f20cb3a493cab5, type: 3}
+  - {fileID: 8300000, guid: 8cb9fff8068609846bb19217401b8e8a, type: 3}
+  - {fileID: 8300000, guid: 61ce6b42e3399d14f86018548096d931, type: 3}
+  - {fileID: 8300000, guid: c6b6ac17db29ff442a17c35a40ee6a4e, type: 3}
+  - {fileID: 8300000, guid: f6095680134e8c1498d0bf19db5ff2ed, type: 3}
   sceneNames:
   - Day 1 after class
   - Day 2 after class
   - Day 3 after class
   - Day 4 after class
   haskey: 0
-  volume: 0.01
+  volume: 1
+  circle: {fileID: 0}
 --- !u!4 &1240834917
 Transform:
   m_ObjectHideFlags: 0
@@ -816,8 +821,8 @@ Canvas:
   m_GameObject: {fileID: 2097610723}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1573084155}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
