@@ -31,39 +31,45 @@ public class KeyInteraction : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         interactionText.gameObject.SetActive(false);
     }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 如果当前场景是"start Scene"，则销毁自身
-        if (SceneManager.GetActiveScene().name == "start Scene")
+        // 先检查对象是否已经被销毁
+        if (this != null)
         {
-            Destroy(gameObject);
-        }
-        if (scene.name != "transition scene" && scene.name != "start Scene" && scene.name != "Ending bad" && scene.name != "Ending good" && scene.name != "Ending leave")
-        {
-            if (interactionText == null)
+            // 如果当前场景是"start Scene"，则销毁自身
+            if (scene.name == "start Scene")
             {
-                GameObject textObject = GameObject.FindGameObjectWithTag("Key");
-                if (textObject != null)
-                {
-                    interactionText = textObject.GetComponent<TextMeshProUGUI>();
-                }
+                Destroy(gameObject);
             }
-
-            if (mainCamera == null)
+            else if (scene.name != "transition scene" && scene.name != "Ending bad" && scene.name != "Ending good" && scene.name != "Ending leave")
             {
-                mainCamera = Camera.main;
+                // 其他场景的处理逻辑
+                if (interactionText == null)
+                {
+                    GameObject textObject = GameObject.FindGameObjectWithTag("Key");
+                    if (textObject != null)
+                    {
+                        interactionText = textObject.GetComponent<TextMeshProUGUI>();
+                    }
+                }
+
                 if (mainCamera == null)
                 {
-                    GameObject cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
-                    if (cameraObject != null)
+                    mainCamera = Camera.main;
+                    if (mainCamera == null)
                     {
-                        mainCamera = cameraObject.GetComponent<Camera>();
+                        GameObject cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
+                        if (cameraObject != null)
+                        {
+                            mainCamera = cameraObject.GetComponent<Camera>();
+                        }
                     }
                 }
             }
         }
-        
     }
+
 
     void Update()
     {

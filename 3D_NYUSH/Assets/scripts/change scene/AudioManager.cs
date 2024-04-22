@@ -46,11 +46,17 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 如果当前场景是"start Scene"，则销毁自身
-        if (SceneManager.GetActiveScene().name == "start Scene")
+        // 先检查对象是否已经被销毁
+        if (instance != null)
         {
-            Destroy(gameObject);
+            // 如果当前场景是"start Scene"，则销毁自身
+            if (SceneManager.GetActiveScene().name == "start Scene")
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
+
         if (circle == null)
         {
             // 在场景中查找带有特定标签的物体，并将其赋值给变量
@@ -70,7 +76,7 @@ public class AudioManager : MonoBehaviour
 
     void PlayAudio()
     {
-        if (currentIndex < audioClips.Length && currentIndex < sceneNames.Length)
+        if (instance != null && currentIndex < audioClips.Length && currentIndex < sceneNames.Length)
         {
             StartCoroutine(PlayAudioCoroutine(audioClips[currentIndex], sceneNames[currentIndex]));
             currentIndex++;
@@ -99,5 +105,10 @@ public class AudioManager : MonoBehaviour
         {
             currentAudioSource.volume = volume;
         }
+    }
+    void OnDestroy()
+    {
+        // 移除场景加载回调以避免在销毁后触发
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
