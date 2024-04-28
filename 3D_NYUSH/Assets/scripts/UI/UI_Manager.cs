@@ -14,7 +14,7 @@ public class UI_Manager : MonoBehaviour
     public Image imageToHide; // 将要隐藏的Image组件
     public Button buttonToHide; // 将要隐藏的Button组件
     public GameObject new_email;
-    private bool anynew_email = true;
+    public bool anynew_email = true;
     // 定义一个变量来控制游戏是否暂停
     private bool isPaused = false;
 
