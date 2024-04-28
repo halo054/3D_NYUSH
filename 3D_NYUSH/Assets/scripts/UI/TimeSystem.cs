@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class GameTimeManager : MonoBehaviour
 {
     [SerializeField] private int initialHour = 16; // 游戏开始时的小时
-    [SerializeField] private int initialMinute = 15; // 游戏开始时的分钟
+    [SerializeField] private int initialMinute = 20; // 游戏开始时的分钟
     [SerializeField] private int initialSeconds = 0; // 游戏开始时的秒数
     public int timeScale = 5; // 每秒游戏时间增加的秒数
 
@@ -72,7 +72,7 @@ public class GameTimeManager : MonoBehaviour
             PlayMusicAndSwitchObjectActiveState();
         }
         // Check for mouse click
-        if (Input.GetMouseButtonDown(0)) // 0 represents the left mouse button
+        if (Input.GetMouseButtonDown(0) && (seconds >= 25 || minutes >= 26)) // 0 represents the left mouse button
         {
             HandleMouseClick();
         }
@@ -95,6 +95,7 @@ public class GameTimeManager : MonoBehaviour
     {
             
         // Add your logic here, such as stopping music and switching object's active state
+
         StopMusicAndSwitchObjectActiveState();
     }
 
