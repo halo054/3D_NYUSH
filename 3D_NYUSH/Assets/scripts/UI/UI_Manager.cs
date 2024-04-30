@@ -26,6 +26,7 @@ public class UI_Manager : MonoBehaviour
     public TextMeshProUGUI textMeshPro;
     public float displayTime = 10f;
     public bool emailremind = true;
+    public TextMeshProUGUI targetObject;
     private void Start()
     {
         // 显示文本
@@ -194,6 +195,30 @@ public class UI_Manager : MonoBehaviour
     public void ShowButton()
     {
         buttonToHide.gameObject.SetActive(true);
+    }
+
+    // 由按钮点击事件调用的方法，接受一个 TextMeshProUGUI 参数和一个字符串参数
+    public void ActivateTargetObject(string text)
+    {
+        // 激活目标物体
+        if (targetObject != null)
+        {
+            targetObject.gameObject.SetActive(true);
+            targetObject.text = text;
+            
+            // 启动协程，在2.5秒后禁用目标物体
+            StartCoroutine(DisableTargetObject(targetObject.gameObject));
+        }
+    }
+
+    // 协程函数，用于在一定时间后禁用目标物体
+    public IEnumerator DisableTargetObject(GameObject targetObject)
+    {
+        // 等待2.5秒
+        yield return new WaitForSeconds(2.5f);
+
+        // 禁用目标物体
+        targetObject.SetActive(false);
     }
 
     public void Hide_Button_Image()

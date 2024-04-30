@@ -93,7 +93,7 @@ public class KeyInteraction : MonoBehaviour
                     {
 
                         // 隐藏钥匙而不是销毁它
-                        transform.position -= new Vector3(0f, 0f, 5f);
+                        transform.position -= new Vector3(0f, 5f, 0f);
                         isKeyPickedUp = true;
 
 
