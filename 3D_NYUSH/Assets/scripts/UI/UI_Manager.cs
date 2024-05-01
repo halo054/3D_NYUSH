@@ -27,6 +27,8 @@ public class UI_Manager : MonoBehaviour
     public float displayTime = 10f;
     public bool emailremind = true;
     public TextMeshProUGUI targetObject;
+    public Image vocal;
+    public Image accompaniment;
     private void Start()
     {
         // 显示文本
@@ -205,7 +207,14 @@ public class UI_Manager : MonoBehaviour
         {
             targetObject.gameObject.SetActive(true);
             targetObject.text = text;
-            
+            if (text.Contains("vocal"))
+            {
+                vocal.gameObject.SetActive(true);
+            }
+            if (text.Contains("accompaniment"))
+            {
+                accompaniment.gameObject.SetActive(true);
+            }
             // 启动协程，在2.5秒后禁用目标物体
             StartCoroutine(DisableTargetObject(targetObject.gameObject));
         }
