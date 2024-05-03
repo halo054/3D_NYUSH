@@ -29,6 +29,10 @@ public class UI_Manager : MonoBehaviour
     public TextMeshProUGUI targetObject;
     public Image vocal;
     public Image accompaniment;
+    public GameObject SUMO_AI;
+    public Button SUMO_AI_Generate;
+    public Toggle male;
+    public Toggle female;
     private void Start()
     {
         // 显示文本
@@ -49,6 +53,14 @@ public class UI_Manager : MonoBehaviour
         smartPhone.SetActive(false);
         eMail.SetActive(true);
         new_email.SetActive(true);
+        if (SUMO_AI != null)
+        {
+            SUMO_AI.SetActive(false);
+        }
+        if (SUMO_AI_Generate != null)
+        {
+            SUMO_AI_Generate.interactable = false;
+        }
         // 在Start时隐藏Image和Button
         if (imageToHide != null)
         {
@@ -78,6 +90,14 @@ public class UI_Manager : MonoBehaviour
     }
     void Update()
     {
+        if (vocal != null && accompaniment != null)
+        {
+            if (vocal.gameObject.activeSelf && accompaniment.gameObject.activeSelf)
+            {
+                SUMO_AI_Generate.interactable = true;
+            }
+        }
+
         if (!anynew_email)
         {
             new_email.SetActive(false);
@@ -120,6 +140,10 @@ public class UI_Manager : MonoBehaviour
                 smartPhone.SetActive(!smartPhone.activeSelf);
                 buttonToHide.gameObject.SetActive(false);
                 imageToHide.gameObject.SetActive(false);
+                if (SUMO_AI != null)
+                {
+                    SUMO_AI.SetActive(false);
+                }
             }
             else
             {
@@ -192,6 +216,11 @@ public class UI_Manager : MonoBehaviour
         {
             new_email.SetActive(false);
         }
+
+        if (SUMO_AI != null)
+        {
+            SUMO_AI.SetActive(false);
+        }
     }
 
     public void ShowButton()
@@ -207,7 +236,7 @@ public class UI_Manager : MonoBehaviour
         {
             targetObject.gameObject.SetActive(true);
             targetObject.text = text;
-            if (text.Contains("vocal"))
+            if (text.Contains("Vocal"))
             {
                 vocal.gameObject.SetActive(true);
             }
@@ -230,6 +259,24 @@ public class UI_Manager : MonoBehaviour
         targetObject.SetActive(false);
     }
 
+    public void Ending()
+    {
+        if (male.isOn)
+        {
+            SceneManager.LoadScene("Ending bad");
+        }
+
+        if (female.isOn)
+        {
+            SceneManager.LoadScene("Ending good");
+        }
+    }
+
+    public void Hide_SUMO_AI()
+    {
+        SUMO_AI.SetActive(false);
+        imageToHide.gameObject.SetActive(false);
+    }
     public void Hide_Button_Image()
     {
         buttonToHide.gameObject.SetActive(false);
@@ -249,5 +296,9 @@ public class UI_Manager : MonoBehaviour
         cameraController.EnableInput();
         Time.timeScale = 1f; // 恢复游戏
     }
-    
+
+    public void show_SUMO_AI()
+    {
+        SUMO_AI.SetActive(true);
+    }
 }
