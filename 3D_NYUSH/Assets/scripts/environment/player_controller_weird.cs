@@ -37,7 +37,7 @@ public class player_controller_weird : MonoBehaviour
             float distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
 
             // 获取脚步声音效的音量
-            float volume = Mathf.Lerp(0.1f, 0f, Mathf.InverseLerp(minVolumeDistance, maxVolumeDistance, distanceToTarget));
+            float volume = Mathf.Lerp(0.05f, 0f, Mathf.InverseLerp(minVolumeDistance, maxVolumeDistance, distanceToTarget));
 
             // 设置音频源的音量
             audioSource.volume = volume;
