@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class KeyInteraction : MonoBehaviour
 {
-    public float interactionRange = 5f; // 视线检测的范围
+    private float interactionRange = 20f; // 视线检测的范围
     public KeyCode interactionKey = KeyCode.E; // 交互键
 
     public Camera mainCamera;
