@@ -641,9 +641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 8cb9fff8068609846bb19217401b8e8a, type: 3}
-  - {fileID: 8300000, guid: 61ce6b42e3399d14f86018548096d931, type: 3}
-  - {fileID: 8300000, guid: c6b6ac17db29ff442a17c35a40ee6a4e, type: 3}
+  - {fileID: 8300000, guid: 49a6df6838df9bc4ba4635019793fb89, type: 3}
+  - {fileID: 8300000, guid: e5d4abc84bde82243aba4f69ccfe88d6, type: 3}
+  - {fileID: 8300000, guid: 7616ccd5b3bcb9f40aae200d072a2f05, type: 3}
   sceneNames:
   - Day 1 after class
   - Day 2 after class
